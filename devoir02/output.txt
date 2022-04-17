@@ -1,0 +1,12 @@
+
+chemin du fichier : '{0}'
+##########################
+{0} - taille du fichier : {1} Mo
+
+{0} - ratio type/token : {1}
+
+{0} - nombre de phrases dans le texte : {1}
+
+{0} - longueur de phrase moyenne (en mots) : {1}
+
+{0} - écart moyen de la longueur des phrases (en mots) : {1}
