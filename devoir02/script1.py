@@ -36,7 +36,7 @@ def get_sentences(docs):
   for doc in docs:   # en entrée c'est une liste de documents Spacy
     
     for s in doc.sents:       # pour chaque ph dans le document
-      sent = [token.text for token in s if token.is_alpha] #vérifier si le token est un mot
+      sent = [token.text.lower() for token in s if token.is_alpha] #vérifier si le token est un mot
       if len(sent)>1:       # si la liste n'est pas vide (sentreprésente une phrase)
         sents.append(sent)  # 
   return sents
