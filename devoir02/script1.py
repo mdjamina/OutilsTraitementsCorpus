@@ -1,4 +1,4 @@
-# Amina DJARFI Melouah
+# Amina DJARFI MELOUAH
 
 import spacy
 import os
@@ -30,22 +30,20 @@ def file_size(path, unit=""):
 
   return np.round(os.path.getsize(path) /dv,2) 
 
+#Méthode pour avoir une liste de phrase et chaque phrase une liste de mots:
 def get_sentences(docs):
   sents = []
-  for doc in docs:
+  for doc in docs:   # en entrée c'est une liste de documents Spacy
     
-    for s in doc.sents:
-      tokens = [token.text for token in s if token.is_alpha]
-      if len(tokens)>1:       
-        sents.append(tokens)
+    for s in doc.sents:       # pour chaque ph dans le document
+      sent = [token.text for token in s if token.is_alpha] #vérifier si le token est un mot
+      if len(sent)>1:       # si la liste n'est pas vide (sentreprésente une phrase)
+        sents.append(sent)  # 
   return sents
 
 
-def type_token_ratio(lst):
-  words = []
-  for s in lst:
-    words += s   
-
+#Méthode de calcul de ratio type/token
+def type_token_ratio(words):
   return np.round(len(set(words))/len(words) * 100,2)
 
 
@@ -68,6 +66,7 @@ if __name__ == "__main__":
   i=0
 
   file_path = '/home/amina/workspace/github/Outils_Traitements_Corpus/devoir02/data/Le_Ventre_de_Paris.txt'
+  #file_path = '/home/amina/workspace/github/Outils_Traitements_Corpus/devoir02/data/test.txt'
 
   file_out_path = '/home/amina/workspace/github/Outils_Traitements_Corpus/devoir02/data/output-1.txt'
   
@@ -78,7 +77,7 @@ if __name__ == "__main__":
 
   
 
-
+#POur traiter tout le fichier texte "Le_Ventre_de_Paris.txt",(corpus volumineux): 
   #https://spacy.io/usage/processing-pipelines#processing
   docs = nlp.pipe(corpus, disable=['tagger', 'ner', 'textcat','tok2vec','lemmatizer'])
 
@@ -86,17 +85,17 @@ if __name__ == "__main__":
 
   
 
-  
-
- 
-
   nbr_phrases = len(lst_phrases)
 
   long_moyen_phrases = calcul_avr_sent(lst_phrases)
 
   ecart_type = calcul_ecart_type(lst_phrases)
 
-  rtt = type_token_ratio(lst_phrases)
+  words = []
+  for s in lst_phrases: # pour avoir tout le vocabulaire
+    words += s  
+
+  rtt = type_token_ratio(words)
 
   print("output file: '{0}'".format(file_out_path))
 
@@ -122,3 +121,13 @@ if __name__ == "__main__":
   #
  
 
+text = """Au milieu du grand silence, et dans le désert de l’avenue, les voitures de maraîchers montaient vers Paris, avec les cahots rythmés de leurs roues, dont les échos battaient les façades des maisons, endormies aux deux bords, derrière les lignes confuses des ormes. Un tombereau de choux et un tombereau de pois, au pont de Neuilly, s’étaient joints aux huit voitures de navets et de carottes qui descendaient de Nanterre ; et les chevaux allaient tout seuls, la tête basse, de leur allure continue et paresseuse, que la montée ralentissait encore. En haut, sur la charge des légumes, allongés à plat ventre, couverts de leur limousine à petites raies noires et grises, les charretiers sommeillaient, les guides aux poignets. Un bec de gaz, au sortir d’une nappe d’ombre, éclairait les clous d’un soulier, la manche bleue d’une blouse, le bout d’une casquette, entrevus dans cette floraison énorme des bouquets rouges des carottes, des bouquets blancs des navets, des verdures débordantes des pois et des choux. Et, sur la route, sur les routes voisines, en avant et en arrière, des ronflements lointains de charrois annonçaient des convois pareils, tout un arrivage traversant les ténèbres et le gros sommeil de deux heures du matin, berçant la ville noire du bruit de cette nourriture qui passait.
+
+Balthazar, le cheval de madame François, une bête trop grasse, tenait la tête de la file. Il marchait, dormant à demi, dodelinant des oreilles, lorsque, à la hauteur de la rue de Longchamp, un sursaut de peur le planta net sur ses quatre pieds. Les autres bêtes vinrent donner de la tête contre le cul des voitures, et la file s’arrêta, avec la secousse des ferrailles, au milieu des jurements des charretiers réveillés. Madame François, adossée à une planchette contre ses légumes, regardait, ne voyait rien, dans la maigre lueur jetée à gauche par la petite lanterne carrée, qui n’éclairait guère qu’un des flancs luisants de Balthazar.
+
+— Eh ! la mère, avançons ! cria un des hommes, qui s’était mis à genoux sur ses navets… C’est quelque cochon d’ivrogne."""
+
+nlp = spacy.load('fr_core_news_sm')
+doc = nlp(text)
+for token in doc:
+    print(token)
