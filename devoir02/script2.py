@@ -22,13 +22,15 @@ def get_sentences(docs):
   for doc in docs:   # en entrée c'est une liste de documents Spacy
     
     for s in doc.sents:       # pour chaque ph dans le document
-      sent = [token.text for token in s if token.is_alpha] #vérifier si le token est un mot
+      sent = [token.text.lower() for token in s if token.is_alpha] #vérifier si le token est un mot
       if len(sent)>1:       # si la liste n'est pas vide (sentreprésente une phrase)
         sents.append(sent)  # 
   return sents
 
 
+def cell(word,shape):
 
+  return ''
 
 
 def init():
@@ -42,10 +44,10 @@ if __name__ == "__main__":
 
   i=0
 
-  #file_path = '/home/amina/workspace/github/Outils_Traitements_Corpus/devoir02/data/Le_Ventre_de_Paris.txt'
-  file_path = '/home/amina/workspace/github/Outils_Traitements_Corpus/devoir02/data/test.txt'
+  file_path = '/home/amina/workspace/github/Outils_Traitements_Corpus/devoir02/data/Le_Ventre_de_Paris.txt'
+  #file_path = '/home/amina/workspace/github/Outils_Traitements_Corpus/devoir02/data/test.txt'
 
-  file_out_path = '/home/amina/workspace/github/Outils_Traitements_Corpus/devoir02/data/output-1.txt'
+  file_out_path = '/home/amina/workspace/github/Outils_Traitements_Corpus/devoir02/data/output-2.txt'
   
   corpus = load_corpus(file_path)
 
@@ -65,12 +67,38 @@ if __name__ == "__main__":
   for s in lst_phrases: # pour avoir tout le vocabulaire
     words += s  
 
-  print("nombre de mots", len(words))
 
-  fdist = words_frequency(words)
+  fdist = words_frequency(words).most_common(10)
+
+
+
 
   print("output file: '{0}'".format(file_out_path))
 
-  print(fdist)
+
+
+  with open(file_out_path , 'w') as fout:
+
+
+    fout.write("chemin du fichier : '{0}'\n".format( file_path))
+    fout.write("------------------------------------------------------------------------\n")
+
+    fout.write('- nombre de mots : {0}\n'.format( len(words)))
+
+    fout.write('|'.ljust(10,'-') + '|'.ljust(30,'-') +'|'.ljust(15,'-') +'|\n')
+
+    fout.write('| num'.ljust(10,' ') + '| mots'.ljust(30,' ') +'| Fréquence'.ljust(15,' ') +'|\n')
+
+    fout.write('|'.ljust(10,'-') + '|'.ljust(30,'-') +'|'.ljust(15,'-') +'|\n')
+    i=0
+    for k,v in dict(fdist).items():
+      i+=1
+      fout.write(f'| {i} '.ljust(10,' ') + f'| {k}'.ljust(30,' ') +f'| {v}'.ljust(15,' ') +'|\n')
+      
+    
+    fout.write('|'.ljust(10,'-') + '|'.ljust(30,'-') +'|'.ljust(15,'-') +'|\n')
+
+
+
 
   
