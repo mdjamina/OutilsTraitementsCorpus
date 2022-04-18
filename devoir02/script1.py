@@ -5,18 +5,12 @@ import os
 import numpy as np
 
 
-def load_corpus(path):
+def load_corpus(path):                   
   """chargement du corpus
   """
-  with open(path,'r', encoding='utf8') as fsrc:
+  with open(path,'r', encoding='utf8') as fsrc: 
     return fsrc.read().split('\n')
 
-"""""
-#1.La taille du fichier en octets
-
-file_size = os.path.getsize(r'devoir02/data/Le_Ventre_de_Paris.txt') 
-print('File Size:', file_size, 'bytes')
-"""
 
 def file_size(path, unit=""):
   """calcul de la taille du fichier
@@ -37,19 +31,20 @@ def get_sentences(docs):
     
     for s in doc.sents:       # pour chaque ph dans le document
       sent = [token.text.lower() for token in s if token.is_alpha] #vérifier si le token est un mot
-      if len(sent)>1:       # si la liste n'est pas vide (sentreprésente une phrase)
-        sents.append(sent)  # 
+      if len(sent)>1:       # si la liste n'est pas vide (sent représente une phrase)
+        sents.append(sent)  # sents= c'est la liste des phrase
   return sents
 
 
 #Méthode de calcul de ratio type/token
 def type_token_ratio(words):
-  return np.round(len(set(words))/len(words) * 100,2)
+  return np.round(len(set(words))/len(words) * 100,2) 
 
-
-def calcul_avr_sent(lst):
+#Méthode pour calculer la moyenne des phrases
+def calcul_avr_sent(lst):   
   return np.round(np.average( [len(s) for s in lst]),2)
 
+#Méthode pour calculer l'écart type:
 def calcul_ecart_type(lst):
   return np.round(np.std( [len(s) for s in lst]),2)
 
@@ -81,9 +76,8 @@ if __name__ == "__main__":
   #https://spacy.io/usage/processing-pipelines#processing
   docs = nlp.pipe(corpus, disable=['tagger', 'ner', 'textcat','tok2vec','lemmatizer'])
 
-  lst_phrases = get_sentences(docs)
 
-  
+  lst_phrases = get_sentences(docs)
 
   nbr_phrases = len(lst_phrases)
 
