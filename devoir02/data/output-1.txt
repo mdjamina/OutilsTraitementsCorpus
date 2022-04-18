@@ -1,7 +1,7 @@
 chemin du fichier : '/home/amina/workspace/github/Outils_Traitements_Corpus/devoir02/data/Le_Ventre_de_Paris.txt'
 ------------------------------------------------------------------------
 1 - taille du fichier : 0.67 Mo
-2 - ratio type/token : 10.75
+2 - ratio type/token : 10.49
 3 - nombre de phrases dans le texte : 7804
 4 - longueur de phrase moyenne (en mots) : 14.15
 5 - écart moyen de la longueur des phrases (en mots) : 9.3
