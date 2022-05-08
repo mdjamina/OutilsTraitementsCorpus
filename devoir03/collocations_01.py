@@ -1,3 +1,8 @@
+"""
+Question 1 : Explorer des collocations avec Spacy (ou NLTK)
+
+"""
+
 
 import nltk
 nltk.download('punkt')
@@ -28,12 +33,11 @@ def collocations_trigrams(tokens):
 
 
 
-def load_corpus(path_file):
-    """
-     chargement du corpus
-    """
-    with open(path_file, "r", encoding = "UTF-8") as fsrc:
-        return fsrc.read()
+def load_corpus(path):
+  """chargement du corpus
+  """
+  with open(path,'r', encoding='utf8') as fsrc:
+    return fsrc.read()
 
 
 
