@@ -1,3 +1,5 @@
+#Amina DJARFI MELOUAH
+
 """
 Question 1 : Explorer des collocations avec Spacy (ou NLTK)
 

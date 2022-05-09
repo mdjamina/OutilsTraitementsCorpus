@@ -1,9 +1,6 @@
+#Amina DJARFI MELOUAH
 """
-
-
 Question 4 : Bonus : un nuage de mots avec from wordcloud import WordCloud (ou un autre outil).
-
-
 
 """
 

@@ -1,8 +1,6 @@
+#Amina DJARFI MELOUAH
 """
-
-
 Question 3 : Étudier les contextes de ces mots à l’aide de patrons et, s’il y en a, repérer des collocations.
-
 
 """
 

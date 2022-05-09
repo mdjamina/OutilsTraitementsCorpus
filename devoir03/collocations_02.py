@@ -1,9 +1,6 @@
+#Amina DJARFI MELOUAH
 """
-
-
 Question 2 : Compter le nombre de phrases où apparaissent les mots “travail” et “manger” (sur la base du lemme).
-
-
 """
 
 
