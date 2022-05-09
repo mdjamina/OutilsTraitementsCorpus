@@ -1,7 +1,7 @@
 """
 
 
-Question 2 : Compter le nombre de phrases où apparaissent les mots “travail” et “manger” (sur la base du lemme).
+Question 3 : Étudier les contextes de ces mots à l’aide de patrons et, s’il y en a, repérer des collocations.
 
 
 """
@@ -103,4 +103,6 @@ trigramFinder.apply_ngram_filter(lambda w1, w2, w3: ngrams_filter((w1[1],w2[1],w
 print("nombre trigrams:",len(trigramFinder.ngram_fd.items()))
 
 
+
+#TODO CONTEXT
 
